@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "todos",
+  "info": {
+    "name": "todo"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "title": {
+      "type": "text"
+    },
+    "content": {
+      "type": "text"
+    },
+    "deadline_at": {
+      "type": "datetime"
+    },
+    "status": {
+      "type": "integer"
+    },
+    "deleted": {
+      "type": "integer"
+    }
+  }
+}
