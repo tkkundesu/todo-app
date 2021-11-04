@@ -71,14 +71,14 @@ export default class TodoEdit extends Vue {
             if (this.syncModel.id) {
                 todo = await this.$axios.$put('http://localhost:1337/todos/' + this.syncModel.id, sendData, {
         identifier: 'tkkun2551@gmail.com',
-        password: 'Rock2551'
+        password: 'tkkundesu'
       }).catch((e: any) => {
                     alert(e)
                 })
             } else {
                 todo = await this.$axios.$post('http://localhost:1337/todos/', sendData, {
         identifier: 'tkkun2551@gmail.com',
-        password: 'Rock2551'
+        password: 'tkkundesu'
       }).catch((e: any) => {
                    alert(e)
                 })

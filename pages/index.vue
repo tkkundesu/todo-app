@@ -74,7 +74,7 @@ export default class TodoApp extends Vue {
   async loadTodos() {
       const dd = await this.$axios.$get('http://localhost:1337/todos/',{
         identifier: 'tkkun2551@gmail.com',
-        password: 'Rock2551'
+        password: 'tkkundesu'
       })
       this.todos = dd
       console.log(dd)
@@ -99,7 +99,7 @@ export default class TodoApp extends Vue {
       params.status = 0
       this.$axios.$put('http://localhost:1337/todos/' + params.id, params,{
         identifier: 'tkkun2551@gmail.com',
-        password: 'Rock2551'
+        password: 'tkkundesu'
       }).catch((err: any) => {
           alert(err)
       })
@@ -111,7 +111,7 @@ export default class TodoApp extends Vue {
       params.status = 1
       this.$axios.$put('http://localhost:1337/todos/' + params.id, params,{
         identifier: 'tkkun2551@gmail.com',
-        password: 'Rock2551'
+        password: 'tkkundesu'
       }).catch((err: any) => {
           alert(err)
       })
@@ -123,7 +123,7 @@ export default class TodoApp extends Vue {
       params.status = 2
       this.$axios.$put('http://localhost:1337/todos/' + params.id, params,{
         identifier: 'tkkun2551@gmail.com',
-        password: 'Rock2551'
+        password: 'tkkundesu'
       }).catch((err: any) => {
           alert(err)
       })
@@ -157,7 +157,7 @@ export default class TodoApp extends Vue {
    async deleteButtonHandler(todo: any) {
     await this.$axios.$delete('http://localhost:1337/todos/' + todo.id,{
         identifier: 'tkkun2551@gmail.com',
-        password: 'Rock2551'
+        password: 'tkkundesu'
       }).catch((e: any) => {
       alert(e)
     })
