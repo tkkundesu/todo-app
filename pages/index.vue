@@ -72,7 +72,10 @@ export default class TodoApp extends Vue {
   editModalVisible: boolean = false
 
   async loadTodos() {
-      const dd = await this.$axios.$get('http://localhost:1337/todos/')
+      const dd = await this.$axios.$get('http://localhost:1337/todos/',{
+        identifier: 'tkkun2551@gmail.com',
+        password: 'Rock2551'
+      })
       this.todos = dd
       console.log(dd)
       this.notCompatibleTodos = this.todos.filter((data) => {
@@ -94,7 +97,10 @@ export default class TodoApp extends Vue {
     if (data.added) {
       const params = data.added.element
       params.status = 0
-      this.$axios.$put('http://localhost:1337/todos/' + params.id, params).catch((err: any) => {
+      this.$axios.$put('http://localhost:1337/todos/' + params.id, params,{
+        identifier: 'tkkun2551@gmail.com',
+        password: 'Rock2551'
+      }).catch((err: any) => {
           alert(err)
       })
     }
@@ -103,7 +109,10 @@ export default class TodoApp extends Vue {
     if (data.added) {
       const params = data.added.element
       params.status = 1
-      this.$axios.$put('http://localhost:1337/todos/' + params.id, params).catch((err: any) => {
+      this.$axios.$put('http://localhost:1337/todos/' + params.id, params,{
+        identifier: 'tkkun2551@gmail.com',
+        password: 'Rock2551'
+      }).catch((err: any) => {
           alert(err)
       })
     }
@@ -112,7 +121,10 @@ export default class TodoApp extends Vue {
     if (data.added) {
       const params = data.added.element
       params.status = 2
-      this.$axios.$put('http://localhost:1337/todos/' + params.id, params).catch((err: any) => {
+      this.$axios.$put('http://localhost:1337/todos/' + params.id, params,{
+        identifier: 'tkkun2551@gmail.com',
+        password: 'Rock2551'
+      }).catch((err: any) => {
           alert(err)
       })
     }
@@ -143,7 +155,10 @@ export default class TodoApp extends Vue {
       this.loadTodos()
   }
    async deleteButtonHandler(todo: any) {
-    await this.$axios.$delete('http://localhost:1337/todos/' + todo.id).catch((e: any) => {
+    await this.$axios.$delete('http://localhost:1337/todos/' + todo.id,{
+        identifier: 'tkkun2551@gmail.com',
+        password: 'Rock2551'
+      }).catch((e: any) => {
       alert(e)
     })
     this.loadTodos()

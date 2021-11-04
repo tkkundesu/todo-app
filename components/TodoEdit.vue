@@ -69,11 +69,17 @@ export default class TodoEdit extends Vue {
             const sendData: any = _.cloneDeep(this.syncModel)
 
             if (this.syncModel.id) {
-                todo = await this.$axios.$put('http://localhost:1337/todos/' + this.syncModel.id, sendData).catch((e: any) => {
+                todo = await this.$axios.$put('http://localhost:1337/todos/' + this.syncModel.id, sendData, {
+        identifier: 'tkkun2551@gmail.com',
+        password: 'Rock2551'
+      }).catch((e: any) => {
                     alert(e)
                 })
             } else {
-                todo = await this.$axios.$post('http://localhost:1337/todos/', sendData).catch((e: any) => {
+                todo = await this.$axios.$post('http://localhost:1337/todos/', sendData, {
+        identifier: 'tkkun2551@gmail.com',
+        password: 'Rock2551'
+      }).catch((e: any) => {
                    alert(e)
                 })
             }

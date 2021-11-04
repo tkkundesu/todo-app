@@ -16,7 +16,10 @@ export default class TodoApp extends Vue{
  todos = []
 
 async mounted() {
-  let res = await this.$axios.$get('http://localhost:1337/todos/')
+  let res = await this.$axios.$get('http://localhost:1337/todos/',{
+        identifier: 'tkkun2551@gmail.com',
+        password: 'Rock2551'
+      })
   console.log(res)
 }
 }
