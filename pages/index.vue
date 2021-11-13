@@ -11,7 +11,7 @@
                    <p>{{ todo.title }}　<span @click="editButtonHandler(todo)" class="icon">🖋</span><span @click="deleteButtonHandler(todo)" class="icon">✖︎</span></p>
                 </div>
                 <div class="deadline">
-                    <span v-if="todo.deadline_at">期限：{{ datetimeFormat(todo.deadline_at) }}</span>
+                    <span v-if="todo.deadline_at">期限aa：{{ datetimeFormat(todo.deadline_at) }}</span>
                 </div>
             </todos-panel>
           </draggable>
