@@ -6,7 +6,7 @@
         :title="syncModel.id === null || syncModel.id === undefined ? '新しい課題を登録' : syncModel.title + 'を編集'"
         confirm-button-title="登録"
         class="todo-edit"
-        @confirm="saveHandler"
+        @confirm="$emit('addNewTodo')"
         @close="closeHandler"
     >
     <div class="container">
@@ -38,7 +38,11 @@ import _ from 'lodash'
 export default class TodoEdit extends Vue {
     @PropSync('visible') modalVisible!: boolean
     @PropSync('model') syncModel!: any
-    errors: any = null
+    statusList: any[] = [
+        { label: '未実行', value: 0 },
+        { label: '実行中', value: 1 },
+        { label: '実施済', value: 2 },
+    ]
 
     // キャンセルボタンハンドラ
     closeHandler() {
@@ -54,46 +58,6 @@ export default class TodoEdit extends Vue {
         }
         return null
     }
-    // 保存ボタンハンドラ
-    async saveHandler() {
-        try {
-            this.errors = []
-            // バリデーション
-            const validate = this.validate(this.syncModel)
-            if (validate !== null) {
-                alert(validate)
-                return
-            }
-            // 保存処理
-            let todo: any | null = null
-            const sendData: any = _.cloneDeep(this.syncModel)
-
-            if (this.syncModel.id) {
-                todo = await this.$axios.$put('http://localhost:1337/todos/' + this.syncModel.id, sendData, {
-        identifier: 'tkkun2551@gmail.com',
-        password: 'tkkundesu'
-      }).catch((e: any) => {
-                    alert(e)
-                })
-            } else {
-                todo = await this.$axios.$post('http://localhost:1337/todos/', sendData, {
-        identifier: 'tkkun2551@gmail.com',
-        password: 'tkkundesu'
-      }).catch((e: any) => {
-                   alert(e)
-                })
-            }
-            this.modalVisible = false
-            this.$emit('todo-edit-finished', todo)
-        } catch (e) {
-            this.errors.push(e)
-        }
-    }
-    statusList: any[] = [
-        { label: '未実行', value: 0 },
-        { label: '実行中', value: 1 },
-        { label: '実施済', value: 2 },
-    ]
 }
 </script>
 <style lang="stylus">
