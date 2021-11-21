@@ -46,6 +46,7 @@
       :visible.sync="editModalVisible"
       :model.sync="editModalModel"
       @todo-edit-finished="editFinished"
+      @addNewTodo="addNewTodo"
     />
   </div>
 </template>
@@ -71,21 +72,22 @@ export default class TodoApp extends Vue {
   editModalModel: any = {}
   editModalVisible: boolean = false
 
-  async loadTodos() {
-      const dd = await this.$axios.$get('http://localhost:1337/todos/',{
-        identifier: 'tkkun2551@gmail.com',
-        password: 'tkkundesu'
-      })
-      this.todos = dd
-      console.log(dd)
-      this.notCompatibleTodos = this.todos.filter((data) => {
-          return data.status === 0
-      })
-      this.processingTodos = this.todos.filter((data) => {
-          return data.status === 1
-      })
-      this.processedTodos = this.todos.filter((data) => {
-          return data.status === 2
+  loadTodos() {
+      this.notCompatibleTodos = []
+      this.processingTodos = []
+      this.processedTodos = []
+      this.todos.forEach((todo) => {
+        switch (todo.status) {
+          case 0:
+            this.notCompatibleTodos.push(todo)
+          break;
+          case 1:
+            this.processingTodos.push(todo)
+          break;
+          case 2:
+            this.processedTodos.push(todo)
+          break;
+        }
       })
   }
 
@@ -145,6 +147,13 @@ export default class TodoApp extends Vue {
         deleted: 0,
       }
       this.editModalVisible = true
+  }
+  addNewTodo() {
+      this.editModalModel.id = this.todos.length + 1
+      console.log(this.editModalModel)
+      this.todos.push(this.editModalModel)
+      this.loadTodos()
+      this.editModalVisible = false
   }
   // 修正ボタンハンドラ
   editButtonHandler(todo: any) {
