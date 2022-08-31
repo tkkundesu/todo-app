@@ -15,7 +15,7 @@
     "@nuxtjs/style-resources": "^1.0.0",
     "lodash": "^4.17.19",
     "moment": "^2.24.0",
-    "moment-timezone": "^0.5.27",
+    "moment-timezone": "^0.5.35",
     "nuxt": "^2.13.0",
     "nuxt-property-decorator": "^2.5.0",
     "stylus": "^0.54.7",
